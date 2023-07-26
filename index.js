@@ -5,19 +5,23 @@ var app = express();
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-var indexRouter = require("./routes/index");
 
 // view engine setup
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "app"));
 app.set("view engine", "pug");
 
-app.use("/", indexRouter);
+app.use("/", (req, res, next) => {
+  res.render("index", { title: "Lol" });
+});
 
 io.on("connection", (socket) => {
   console.log(`user ${socket.id} connected`);
   socket.on("message", (msg) => {
-    io.emit("message", `user ${socket.id}: sent a message: ${msg}`);
+    io.emit("message", { sender: socket.id, msg });
+  });
+  socket.on("disconnect", (reason) => {
+    console.log(reason);
   });
 });
 
