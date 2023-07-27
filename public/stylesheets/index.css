@@ -128,11 +128,8 @@ table {
   border-spacing: 0;
 }
 
-body {
-  height: 100vh;
-}
 main#content-bg {
-  height: 100%;
+  height: 100vh;
   background: #00000099;
   display: flex;
   justify-content: center;
