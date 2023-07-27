@@ -1,21 +1,23 @@
 export function populateGrid(row, col) {
-  const readJson = fs.readFileSync("./grids.json", "utf-8");
-  const parseData = readJson ? JSON.parse(readJson) : {};
-  const cellArr = {
-    cells: [],
-  };
-
-  for (let i = 0; i < row; i++) {
-    for (let j = 0; j < col; j++) {
-      cellArr.cells.push({
-        id: `${i}-${j}`,
-        class: `cell`,
-        location: `${i}-${j}`,
-      });
+  try {
+    const readJson = fs.readFileSync("./grids.json", "utf-8");
+    const parseData = readJson ? JSON.parse(readJson) : {};
+    let cells = [];
+    for (let i = 0; i < row; i++) {
+      for (let j = 0; j < col; j++) {
+        cells.push({
+          id: `${i}-${j}`,
+          class: `cell`,
+          location: `${i}-${j}`,
+        });
+      }
     }
+    console.log(cells);
+    parseData.grid = cells;
+    const stringifyGridData = JSON.stringify(parseData);
+    const writeJson = fs.writeFileSync("grids.json", stringifyGridData);
+  } catch (err) {
+    console.log(err);
+    throw err;
   }
-  console.log(cellArr.cells);
-  parseData.grid = cellArr.cells;
-  const stringifyGridData = JSON.stringify(parseData);
-  const writeJson = fs.writeFileSync("grids.json", stringifyGridData);
 }
