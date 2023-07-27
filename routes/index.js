@@ -6,11 +6,12 @@ const routeHandlers = [
   (req, res, next) => {
     const readGridFile = fs.readFileSync("./grids.json", "utf-8");
     const parseGridData = JSON.parse(readGridFile);
-    console.log(readGridFile);
+    req.gridData = parseGridData;
     next();
   },
   (req, res) => {
-    res.render("index", { title: "r/place clone" });
+    console.log(req.gridData);
+    res.render("index", { title: "r/place clone", gridData });
   },
 ];
 
