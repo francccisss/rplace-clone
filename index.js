@@ -1,4 +1,3 @@
-const fs = require("fs");
 var express = require("express");
 var path = require("path");
 const http = require("http");

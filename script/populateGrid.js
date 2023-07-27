@@ -1,4 +1,5 @@
-export function populateGrid(row, col) {
+const fs = require("fs");
+function populateGrid(row, col) {
   try {
     const resetFile = fs.writeFileSync("grids.json", JSON.stringify({}));
     const readJson = fs.readFileSync("./grids.json", "utf-8");
@@ -23,3 +24,5 @@ export function populateGrid(row, col) {
     throw err;
   }
 }
+
+populateGrid(4, 4);
