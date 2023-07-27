@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 
-const routeHandlers = [
+const middleware = [
   (req, res, next) => {
     const readGridFile = fs.readFileSync("./grids.json", "utf-8");
     const parseGridData = JSON.parse(readGridFile);
@@ -11,10 +11,10 @@ const routeHandlers = [
   },
   (req, res) => {
     console.log(req.gridData);
-    res.render("index", { title: "r/place clone", gridData });
+    res.render("index", { title: "r/place clone", gridData: req.gridData });
   },
 ];
 
-router.get("/", routeHandlers);
+router.get("/", middleware);
 
 module.exports = router;
