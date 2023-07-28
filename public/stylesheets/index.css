@@ -133,7 +133,7 @@ body {
 }
 main#content-bg {
   height: 100%;
-  background: #00000099;
+  background: #4a4a4a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,12 +142,16 @@ main#content-bg {
 
 section#pixel-board-container {
   background-color: #ffffff;
-  width: 80%;
-  height: 50%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(10px, 1fr));
+  grid-template-columns: repeat(4, minmax(100px, 120px));
+  grid-template-rows: repeat(4, minmax(100px, auto));
 
   & > span.cell {
-    place-self: center;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1px solid #00000020;
   }
 }
