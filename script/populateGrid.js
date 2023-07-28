@@ -25,4 +25,4 @@ function populateGrid(row, col) {
   }
 }
 
-populateGrid(4, 4);
+populateGrid(10, 15);
