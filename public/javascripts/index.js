@@ -1,28 +1,29 @@
 const socket = io();
 
-console.log("init");
+const defaultColors = [
+  "#FFFFFF",
+  "#000000",
+  "#2D2D2D",
+  "#5F5F5F",
+  "#F15555a",
+  "#9F4141",
+  "#7B2121",
+  "#B11919",
+  "#FFF626",
+  "#EDE86A",
+  "#FFF968",
+  "#55F181",
+  "#1BFF5B",
+  "#008625",
+];
 
-const btn = document.querySelector(".btn");
-const input = document.querySelector("#input");
-const messages = document.querySelector("#chat-messages");
-let add = 0;
+function applyColorList(defaultColors) {
+  const items = document.querySelectorAll(".item");
+  items.forEach((item, i) => {
+    if (i == 0) return;
+    item.style.backgroundColor = defaultColors[i];
+    item.id = defaultColors[i];
+  });
+}
 
-socket.on("message", ({ sender, msg }) => {
-  console.log(msg);
-  const message = document.createElement("li");
-  message.textContent = `${sender} said: ${msg}`;
-  messages.appendChild(message);
-});
-
-socket.on("connect", () => {
-  console.log("client is connected ");
-});
-socket.on("disconnect", (reason) => {
-  socket.emit("board state", "new board state");
-  console.log("client is disconnected");
-});
-
-btn.addEventListener("click", () => {
-  socket.emit("message", input.value);
-  input.value = "";
-});
+applyColorList(defaultColors);
