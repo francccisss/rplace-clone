@@ -3,9 +3,14 @@ export class PixelBoard {
     this.boardContainer = container;
   }
 
-  updateBoard(data) {
-    console.log(data);
-    console.log(this.boardContainer);
+  updateBoard({ ID, location, className, color }) {
+    const cells = Array.from(this.boardContainer.children);
+    console.log(ID);
+    cells.map((cell) => {
+      if (cell.id.includes(ID)) {
+        cell.style.backgroundColor = color;
+      }
+    });
   }
 
   getCells() {

@@ -10,7 +10,7 @@ const middleware = [
     next();
   },
   (req, res) => {
-    console.log(req.gridData);
+    // console.log(req.gridData);
     res.render("index", { title: "r/place clone", gridData: req.gridData });
   },
 ];
