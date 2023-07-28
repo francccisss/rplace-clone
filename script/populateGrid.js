@@ -10,7 +10,7 @@ function populateGrid(row, col) {
       for (let j = 0; j < col; j++) {
         cells.push({
           id: `${i}-${j}`,
-          class: `cell`,
+          className: `cell`,
           location: `${i}-${j}`,
         });
       }

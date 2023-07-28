@@ -18,7 +18,7 @@ export class User {
       ID: target.id,
       location: target.id,
       color: this.color,
-      class: target.classList.contains("cell") && "cell",
+      className: target.classList.contains("cell") && "cell",
     };
     console.log(cellInfo);
     target.style.backgroundColor = this.color;
