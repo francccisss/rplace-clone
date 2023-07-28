@@ -1,7 +1,6 @@
 extends layout
 block content
   main#content-bg
-    h1= title
     section#pixel-board-container 
       each cell,index in gridData.grid
         span(class=cell.class id=cell.id)= cell.id
