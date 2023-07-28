@@ -29,5 +29,4 @@ const colorPicker = document.getElementById("color-picker");
 })();
 
 colorPicker.addEventListener("click", user.setColor);
-
 pixelBoardContainer.addEventListener("click", user.place);
