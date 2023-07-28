@@ -130,6 +130,7 @@ table {
 
 body {
   height: 100vh;
+  position: relative;
 }
 main#content-bg {
   height: 100%;
@@ -145,6 +146,7 @@ section#pixel-board-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(100px, 120px));
   grid-template-rows: repeat(4, minmax(100px, auto));
+  margin-bottom: 10px;
 
   & > span.cell {
     width: auto;
@@ -154,4 +156,18 @@ section#pixel-board-container {
     align-items: center;
     border: 0.1px solid #00000020;
   }
+}
+
+#color-picker {
+  min-height: 50px;
+  max-width: 500px;
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  top: calc(100% - 100px);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  /* top: calc(100% - 100px); */
 }
