@@ -14,17 +14,18 @@ app.set("view engine", "pug");
 
 app.use("/", indexRouter);
 
-// io.on("connection", (socket) => {
-//   console.log(`user ${socket.id} connected`);
+io.on("connection", (socket) => {
+  console.log(`user ${socket.id} connected`);
 
-//   socket.on("message", (msg) => {
-//     io.emit("message", { sender: socket.id, msg });
-//   });
+  socket.on("place", (msg) => {
+    console.log(msg);
+    io.emit("place", msg);
+  });
 
-//   socket.on("disconnect", (reason) => {
-//     console.log(reason);
-//   });
-// });
+  socket.on("disconnect", (reason) => {
+    console.log(reason);
+  });
+});
 
 server.listen(3000, () => {
   console.log("listening on *:3000");

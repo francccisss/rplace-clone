@@ -1,8 +1,10 @@
 import { User } from "./Users.js";
-const user = new User();
+import { PixelBoard } from "./PixelBoard.js";
 const socket = io();
-const pixelBoardContainer = document.getElementById("pixel-board-container");
+const container = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
+const user = new User();
+const pixelBoard = new PixelBoard(container);
 (function () {
   const defaultColors = [
     "#FFFFFF",
@@ -29,4 +31,6 @@ const colorPicker = document.getElementById("color-picker");
 })();
 
 colorPicker.addEventListener("click", (e) => user.setColor(e));
-pixelBoardContainer.addEventListener("click", (e) => user.place(e));
+container.addEventListener("click", (e) => user.place(e));
+
+socket.on("place", (data) => pixelBoard.updateBoard(data));

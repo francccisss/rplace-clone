@@ -1,13 +1,11 @@
-class PixelBoard {
-  constructor(board, rows = 100, cols = 100) {
-    this.rows = rows;
-    this.cols = cols;
-    this.boardContainer = board;
+export class PixelBoard {
+  constructor(container) {
+    this.boardContainer = container;
   }
 
   updateBoard(data) {
-    // loop throught board children find any cell that matches that data's location
-    // and change the color to what the data specifies
+    console.log(data);
+    console.log(this.boardContainer);
   }
 
   getCells() {
