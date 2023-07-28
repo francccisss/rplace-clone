@@ -6,6 +6,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 const indexRouter = require("./routes/index");
+const updateGrids = require("./event-handlers/updateGrids");
 
 // view engine setup
 app.use(express.static(path.join(__dirname, "public")));
@@ -17,9 +18,10 @@ app.use("/", indexRouter);
 io.on("connection", (socket) => {
   console.log(`user ${socket.id} connected`);
 
-  socket.on("place", (msg) => {
+  socket.on("place", async (msg) => {
     const toJsonMsg = JSON.stringify(msg);
     console.log(`user ${socket.id} sent: ${toJsonMsg}`);
+    await updateGrids("grids.json", msg.id);
     io.emit("place", msg);
   });
 

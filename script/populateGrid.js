@@ -1,8 +1,8 @@
 const fs = require("fs");
-function populateGrid(row, col) {
+function populateGrid(row, col, file) {
   try {
-    const resetFile = fs.writeFileSync("grids.json", JSON.stringify({}));
-    const readJson = fs.readFileSync("./grids.json", "utf-8");
+    const resetFile = fs.writeFileSync(file, JSON.stringify({}));
+    const readJson = fs.readFileSync(file, "utf-8");
     const parseData = readJson ? JSON.parse(readJson) : {};
 
     let cells = [];
@@ -18,11 +18,11 @@ function populateGrid(row, col) {
     console.log(cells);
     parseData.grid = cells;
     const stringifyGridData = JSON.stringify(parseData);
-    const writeJson = fs.writeFileSync("grids.json", stringifyGridData);
+    const writeJson = fs.writeFileSync(file, stringifyGridData);
   } catch (err) {
     console.log(err);
     throw err;
   }
 }
 
-populateGrid(10, 15);
+populateGrid(10, 15, "grids.json");

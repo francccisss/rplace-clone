@@ -19,7 +19,7 @@ export class User {
       return;
     }
     const cellInfo = {
-      ID: target.id,
+      id: target.id,
       location: target.id,
       color: this.color,
       className: target.classList.contains("cell") && "cell",

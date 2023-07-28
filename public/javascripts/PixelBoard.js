@@ -3,11 +3,11 @@ export class PixelBoard {
     this.boardContainer = container;
   }
 
-  updateBoard({ ID, location, className, color }) {
+  updateBoard({ id, location, className, color }) {
     const cells = Array.from(this.boardContainer.children);
-    console.log(ID);
+    console.log(id);
     cells.map((cell) => {
-      if (cell.id.includes(ID)) {
+      if (cell.id.includes(id)) {
         cell.style.backgroundColor = color;
       }
     });
