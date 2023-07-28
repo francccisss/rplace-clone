@@ -23,10 +23,15 @@ const pixelBoard = new PixelBoard(container);
     "#008625",
   ];
   const items = document.querySelectorAll(".item");
+  const cells = document.querySelectorAll(".cell");
   items.forEach((item, i) => {
     if (i == 0) return;
     item.style.backgroundColor = defaultColors[i];
     item.id = defaultColors[i];
+  });
+
+  cells.forEach((cell) => {
+    cell.style.backgroundColor = cell.dataset.color;
   });
 })();
 

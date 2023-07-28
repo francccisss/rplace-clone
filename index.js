@@ -19,10 +19,8 @@ io.on("connection", (socket) => {
   console.log(`user ${socket.id} connected`);
 
   socket.on("place", async (msg) => {
-    const toJsonMsg = JSON.stringify(msg);
-    console.log(`user ${socket.id} sent: ${toJsonMsg}`);
-    await updateGrids("grids.json", msg.id);
     io.emit("place", msg);
+    updateGrids("grids.json", msg);
   });
 
   socket.on("disconnect", (reason) => {
