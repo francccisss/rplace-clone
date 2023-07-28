@@ -8,12 +8,16 @@ export class User {
     const target = e.target;
     if (target.id == "color-swatch") return;
     this.color = target.id;
-
-    console.log(this.color);
   }
 
   place(e) {
     const target = e.target;
+    if (!target.classList.contains("cell")) return;
+    if (this.color === null) {
+      console.log("color not set");
+      // notify user to pick a color
+      return;
+    }
     const cellInfo = {
       ID: target.id,
       location: target.id,
@@ -22,11 +26,6 @@ export class User {
     };
     console.log(cellInfo);
     target.style.backgroundColor = this.color;
-    if (this.color === null) {
-      console.log("color not set");
-      // notify user to pick a color
-      return;
-    }
     socket.emit("place", cellInfo);
   }
 }
