@@ -128,9 +128,13 @@ table {
   border-spacing: 0;
 }
 
-main#content-bg {
+body {
   height: 100vh;
-  background: #00000099;
+  position: relative;
+}
+main#content-bg {
+  height: 100%;
+  background: #4a4a4a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -138,13 +142,62 @@ main#content-bg {
 }
 
 section#pixel-board-container {
+  box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
-  width: 80%;
-  height: 50%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(10px, 1fr));
+  grid-template-rows: repeat(10, minmax(50px, auto));
+  grid-template-columns: repeat(15, minmax(50px, 50px));
+  margin-bottom: 10px;
 
   & > span.cell {
-    place-self: center;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1px solid #00000020;
+  }
+}
+
+#color-picker {
+  padding: 0px 10px;
+  min-height: 50px;
+  max-width: 500px;
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  top: calc(100% - 100px);
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, 0.2);
+  #color-list {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  #color-list > .item {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: 2px solid #00000040;
+    cursor: pointer;
+  }
+
+  #color-list > #color-swatch {
+    background-image: url("../images/filter.png");
+    background-size: 25px 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid transparent;
+    background-color: #00000020;
+    transition: background-color 150ms ease-in-out;
+  }
+
+  #color-list > #color-swatch:hover {
+    background-color: #00000060;
   }
 }
