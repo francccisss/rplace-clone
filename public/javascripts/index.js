@@ -9,7 +9,7 @@ const colorPicker = document.getElementById("color-picker");
     "#000000",
     "#2D2D2D",
     "#5F5F5F",
-    "#F15555a",
+    "#F15555",
     "#9F4141",
     "#7B2121",
     "#B11919",
@@ -28,5 +28,5 @@ const colorPicker = document.getElementById("color-picker");
   });
 })();
 
-colorPicker.addEventListener("click", user.setColor);
-pixelBoardContainer.addEventListener("click", user.place);
+colorPicker.addEventListener("click", (e) => user.setColor(e));
+pixelBoardContainer.addEventListener("click", (e) => user.place(e));
