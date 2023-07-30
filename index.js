@@ -19,7 +19,10 @@ io.on("connection", (socket) => {
   console.log(`user ${socket.id} connected`);
 
   socket.on("place", async (msg) => {
+    const toJsonMsg = JSON.stringify(msg);
+    console.log(`user ${socket.id} sent: ${toJsonMsg}`);
     io.emit("place", msg);
+    // handle updating grids.json error
     updateGrids("grids.json", msg);
   });
 

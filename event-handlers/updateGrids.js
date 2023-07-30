@@ -8,7 +8,7 @@ function updateGrids(file, modifiedCell) {
     const parseData = readJson ? JSON.parse(readJson) : {};
 
     const mapGrid = parseData.grid.map((cell) => {
-      if (cell.id.includes(modifiedCell.id)) {
+      if (cell.id === modifiedCell.id) {
         console.log(modifiedCell);
         return modifiedCell;
       }
@@ -18,6 +18,7 @@ function updateGrids(file, modifiedCell) {
     const updateJson = fs.writeFileSync(file, stringifyGridData);
   } catch (err) {
     console.log(err);
+    throw err;
   }
 }
 

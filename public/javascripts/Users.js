@@ -9,7 +9,9 @@ export class User {
     if (target.id == "color-swatch") return;
     this.color = target.id;
   }
-
+  // whenever a user places a color on the second column of ever row
+  // it updates the last 5 or 4 elements with the same color and changes
+  // their ids to match the 2nd column element's id
   place(e) {
     const target = e.target;
     if (!target.classList.contains("cell")) return;

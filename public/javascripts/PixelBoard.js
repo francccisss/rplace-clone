@@ -6,8 +6,7 @@ export class PixelBoard {
   updateBoard({ id, location, className, color }) {
     const cells = Array.from(this.boardContainer.children);
     cells.map((cell) => {
-      if (cell.id.includes(id)) {
-        console.log(cell);
+      if (cell.id === id) {
         cell.style.backgroundColor = color;
       }
     });
