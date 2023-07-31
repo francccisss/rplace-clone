@@ -131,6 +131,7 @@ table {
 body {
   height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 main#content-bg {
   overflow: auto;
@@ -141,6 +142,28 @@ main#content-bg {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  scrollbar-width: thin;
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: 2px solid #888;
+    border-radius: 10px;
+  }
 }
 
 section#pixel-board-container {
