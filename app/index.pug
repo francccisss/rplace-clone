@@ -1,7 +1,10 @@
 extends layout
 block content
   main#content-bg
-    section#pixel-board-container 
+    section(id="pixel-board-container" 
+      style={'grid-template-rows':`repeat(${rowAndCols.rows} ,minmax(50px,auto))`,
+              'grid-template-columns':`repeat(${rowAndCols.cols},minmax(50px,50px))`
+              })
       each cell,index in gridData.grid
         span(class=cell.className id=cell.id, data-color=cell.color)
   div#color-picker

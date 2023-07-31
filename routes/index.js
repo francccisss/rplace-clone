@@ -10,8 +10,11 @@ const middleware = [
     next();
   },
   (req, res) => {
-    // console.log(req.gridData);
-    res.render("index", { title: "r/place clone", gridData: req.gridData });
+    res.render("index", {
+      title: "r/place clone",
+      gridData: req.gridData,
+      rowAndCols: { rows: 10, cols: 12 },
+    });
   },
 ];
 
