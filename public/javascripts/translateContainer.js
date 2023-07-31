@@ -1,22 +1,23 @@
 const contentBg = document.getElementById("content-bg");
+const pixelBoard = document.getElementById("pixel-board-container");
 let isMouseDown = false;
 
 function translatePixelContainer(e) {
+  const pixelBoardStyle = window.getComputedStyle(pixelBoard);
+  const matrix = new WebKitCSSMatrix(pixelBoardStyle.transform);
   e.stopPropagation();
   const target = e.target;
-  let mousePos = {
-    x: e.clientX,
-    y: e.clientY,
-  };
 
+  const newMatrix = new DOMMatrix(matrix);
+  newMatrix.m41 += e.movementX;
+  newMatrix.m42 += e.movementY;
   if (isMouseDown) {
-    console.log(mousePos);
     if (target.classList.contains("cell")) {
-      const board = target.parentNode;
-      // let translatePosition = `${mousePos.x}px ${mousePos.y}px`;
-      // board.style.translate = translatePosition;
-    } else if (target.id === "content-bg") {
+      // let translatePosition = `translate(${(matrix.m41 +=
+      //   e.movementX)}px ${(matrix.m42 += e.movementY)} )`;
+      pixelBoard.style.transform = newMatrix.toString();
     }
+    pixelBoard.style.transform = newMatrix.toString();
   }
 }
 contentBg.addEventListener("mousedown", (e) => {
