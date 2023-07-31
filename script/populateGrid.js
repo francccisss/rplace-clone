@@ -25,4 +25,4 @@ function populateGrid(row, col, file) {
   }
 }
 
-populateGrid(10, 15, "grids.json");
+populateGrid(15, 20, "grids.json");

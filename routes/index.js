@@ -13,7 +13,7 @@ const middleware = [
     res.render("index", {
       title: "r/place clone",
       gridData: req.gridData,
-      rowAndCols: { rows: 10, cols: 12 },
+      rowAndCols: { rows: 15, cols: 20 },
     });
   },
 ];
