@@ -13,6 +13,7 @@ export class User {
   // it updates the last 5 or 4 elements with the same color and changes
   // their ids to match the 2nd column element's id
   place(e) {
+    e.stopPropagation();
     const target = e.target;
     if (!target.classList.contains("cell")) return;
     if (this.color === null) {
