@@ -13,8 +13,6 @@ function translatePixelContainer(e) {
   newMatrix.m42 += e.movementY;
   if (isMouseDown) {
     if (target.classList.contains("cell")) {
-      // let translatePosition = `translate(${(matrix.m41 +=
-      //   e.movementX)}px ${(matrix.m42 += e.movementY)} )`;
       pixelBoard.style.transform = newMatrix.toString();
     }
     pixelBoard.style.transform = newMatrix.toString();
@@ -22,11 +20,13 @@ function translatePixelContainer(e) {
 }
 contentBg.addEventListener("mousedown", (e) => {
   if (e.button === 1) {
+    contentBg.style.cursor = "grabbing";
     isMouseDown = true;
   }
 });
 
 contentBg.addEventListener("mouseup", (e) => {
   isMouseDown = false;
+  contentBg.style.cursor = "default";
 });
 contentBg.addEventListener("mousemove", translatePixelContainer, true);
