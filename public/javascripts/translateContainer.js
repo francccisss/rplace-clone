@@ -30,3 +30,9 @@ contentBg.addEventListener("mouseup", (e) => {
   contentBg.style.cursor = "default";
 });
 contentBg.addEventListener("mousemove", translatePixelContainer, true);
+
+contentBg.addEventListener("mouseleave", () => {
+  console.log("leave");
+  isMouseDown = false;
+  contentBg.style.cursor = "default";
+});
