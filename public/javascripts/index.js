@@ -4,6 +4,7 @@ import { PixelBoard } from "./PixelBoard.js";
 const socket = io();
 const container = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
+const colorInput = document.getElementById("color-input");
 const user = new User();
 const pixelBoard = new PixelBoard(container);
 (function () {
@@ -30,12 +31,12 @@ const pixelBoard = new PixelBoard(container);
     item.style.backgroundColor = defaultColors[i];
     item.id = defaultColors[i];
   });
-
   cells.forEach((cell) => {
     cell.style.backgroundColor = cell.dataset.color;
   });
 })();
 
 colorPicker.addEventListener("click", (e) => user.setColor(e));
+colorInput.addEventListener("input", (e) => user.setColor(e), false);
 container.addEventListener("click", (e) => user.place(e));
 socket.on("place", (data) => pixelBoard.updateBoard(data));

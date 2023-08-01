@@ -6,12 +6,15 @@ export class User {
 
   setColor(e) {
     const target = e.target;
-    if (target.id == "color-swatch") return;
+    let hex = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);
+    if (!hex.test(target.id)) {
+      console.log("value from color input");
+      this.color = target.value;
+      return;
+    }
+    console.log("value from color picker");
     this.color = target.id;
   }
-  // whenever a user places a color on the second column of ever row
-  // it updates the last 5 or 4 elements with the same color and changes
-  // their ids to match the 2nd column element's id
   place(e) {
     e.stopPropagation();
     const target = e.target;
