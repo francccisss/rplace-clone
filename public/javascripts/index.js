@@ -1,7 +1,6 @@
 import { User } from "./Users.js";
 import "./translateContainer.js";
 import { PixelBoard } from "./PixelBoard.js";
-const viewportMeta = document.querySelector(`meta[name="viewport"]`);
 const socket = io();
 const container = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
