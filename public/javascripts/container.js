@@ -1,6 +1,7 @@
 const contentBg = document.getElementById("content-bg");
 const pixelBoard = document.getElementById("pixel-board-container");
 let isMouseDown = false;
+let scale = 1;
 
 function translatePixelContainer(e) {
   const pixelBoardStyle = window.getComputedStyle(pixelBoard);
@@ -17,6 +18,14 @@ function translatePixelContainer(e) {
     }
     pixelBoard.style.transform = newMatrix.toString();
   }
+}
+
+function scalePixelContainer(e) {
+  e.preventDefault();
+  console.log(e.deltaY);
+  scale += e.deltaY * -0.005;
+  scale = Math.min(Math.max(0.5, scale), 5);
+  pixelBoard.style.transform = `scale(${scale})`;
 }
 contentBg.addEventListener("mousedown", (e) => {
   if (e.button === 1) {
@@ -36,3 +45,5 @@ contentBg.addEventListener("mouseleave", () => {
   isMouseDown = false;
   contentBg.style.cursor = "default";
 });
+
+contentBg.addEventListener("wheel", scalePixelContainer, { passive: false });
