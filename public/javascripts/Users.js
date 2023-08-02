@@ -10,10 +10,11 @@ export class User {
     if (!hex.test(target.id)) {
       console.log("value from color input");
       this.color = target.value;
-      return;
+      return target.value;
     }
     console.log("value from color picker");
     this.color = target.id;
+    return this.color;
   }
   place(e) {
     e.stopPropagation();

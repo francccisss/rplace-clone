@@ -1,5 +1,6 @@
 const contentBg = document.getElementById("content-bg");
 const pixelBoard = document.getElementById("pixel-board-container");
+const pickedColorDiv = document.getElementById("current-color");
 let isMouseDown = false;
 let scale = 1;
 
@@ -27,6 +28,17 @@ function scalePixelContainer(e) {
   scale = Math.min(Math.max(0.5, scale), 5);
   pixelBoard.style.transform = `scale(${scale})`;
 }
+
+function currentColorFollowMousePos(e) {
+  const target = e.target;
+  const mousePos = {
+    x: e.clientX,
+    y: e.clientY,
+  };
+  pickedColorDiv.style.top = `${30 + mousePos.y}px`;
+  pickedColorDiv.style.left = `${30 + mousePos.x}px`;
+}
+
 contentBg.addEventListener("mousedown", (e) => {
   if (e.button === 1) {
     contentBg.style.cursor = "grabbing";
@@ -38,7 +50,15 @@ contentBg.addEventListener("mouseup", (e) => {
   isMouseDown = false;
   contentBg.style.cursor = "default";
 });
-contentBg.addEventListener("mousemove", translatePixelContainer, true);
+
+contentBg.addEventListener(
+  "mousemove",
+  (e) => {
+    translatePixelContainer(e);
+    currentColorFollowMousePos(e);
+  },
+  true
+);
 
 contentBg.addEventListener("mouseleave", () => {
   console.log("leave");

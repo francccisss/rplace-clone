@@ -2,12 +2,12 @@ import { User } from "./Users.js";
 import "./container.js";
 import { PixelBoard } from "./PixelBoard.js";
 const socket = io();
-const container = document.getElementById("pixel-board-container");
+const pixelBoardContainer = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
 const colorInput = document.getElementById("color-input");
 const user = new User();
-const pixelBoard = new PixelBoard(container);
-
+const pixelBoard = new PixelBoard(pixelBoardContainer);
+const pickedColorDiv = document.getElementById("current-color");
 (function () {
   const defaultColors = [
     "#FFFFFF",
@@ -37,7 +37,21 @@ const pixelBoard = new PixelBoard(container);
   });
 })();
 
-colorPicker.addEventListener("click", (e) => user.setColor(e));
-colorInput.addEventListener("input", (e) => user.setColor(e), false);
-container.addEventListener("click", (e) => user.place(e));
+colorPicker.addEventListener("click", (e) => {
+  const color = user.setColor(e);
+  if (e.target.id !== "color-swatch") {
+    pickedColorDiv.style.backgroundColor = color;
+    pickedColorDiv.style.border = "1px solid #00000080";
+  }
+});
+colorInput.addEventListener(
+  "input",
+  (e) => {
+    const color = user.setColor(e);
+    pickedColorDiv.style.backgroundColor = color;
+    pickedColorDiv.style.border = "1px solid #00000080";
+  },
+  false
+);
+pixelBoardContainer.addEventListener("click", (e) => user.place(e));
 socket.on("place", (data) => pixelBoard.updateBoard(data));

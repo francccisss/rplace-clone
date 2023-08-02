@@ -1,6 +1,7 @@
 extends layout
 block content
   main#content-bg
+    span#current-color
     section(id="pixel-board-container" 
       style={'grid-template-rows':`repeat(${rowAndCols.rows} ,minmax(20px,auto))`,
               'grid-template-columns':`repeat(${rowAndCols.cols},minmax(20px,20px))`
