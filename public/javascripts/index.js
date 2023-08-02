@@ -1,5 +1,6 @@
 import { User } from "./Users.js";
 import "./translateContainer.js";
+import "./scalingContainer.js";
 import { PixelBoard } from "./PixelBoard.js";
 const socket = io();
 const container = document.getElementById("pixel-board-container");
@@ -7,6 +8,7 @@ const colorPicker = document.getElementById("color-picker");
 const colorInput = document.getElementById("color-input");
 const user = new User();
 const pixelBoard = new PixelBoard(container);
+
 (function () {
   const defaultColors = [
     "#FFFFFF",
