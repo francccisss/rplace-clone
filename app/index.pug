@@ -2,22 +2,23 @@ extends layout
 block content
   main#content-bg
     section(id="pixel-board-container" 
-      style={'grid-template-rows':`repeat(${rowAndCols.rows} ,minmax(40px,auto))`,
-              'grid-template-columns':`repeat(${rowAndCols.cols},minmax(40px,40px))`
+      style={'grid-template-rows':`repeat(${rowAndCols.rows} ,minmax(20px,auto))`,
+              'grid-template-columns':`repeat(${rowAndCols.cols},minmax(20px,20px))`
               })
       each cell,index in gridData.grid
         span(class=cell.className id=cell.id, data-color=cell.color)
-  div#color-picker
-    ul#color-list
-      li#color-swatch.item
-        input(type="color" id="color-input" name="color-input")
-      li.item
-      li.item
-      li.item
-      li.item
-      li.item
-      li.item
-      li.item
-      li.item
-      li.item
-      li.item
+
+    div#color-picker
+      ul#color-list
+        li#color-swatch.item
+          input(type="color" id="color-input" name="color-input")
+        li.item
+        li.item
+        li.item
+        li.item
+        li.item
+        li.item
+        li.item
+        li.item
+        li.item
+        li.item

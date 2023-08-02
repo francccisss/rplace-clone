@@ -143,6 +143,7 @@ main#content-bg {
   align-items: center;
   flex-direction: column;
   scrollbar-width: thin;
+  position: relative;
 
   /* width */
   &::-webkit-scrollbar {
@@ -171,14 +172,16 @@ section#pixel-board-container {
   background-color: #ffffff;
   display: grid;
   margin-bottom: 10px;
-
   & > span.cell {
     width: auto;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0.1px solid #00000020;
+    /* border: 0.1px solid #00000020; */
+  }
+  & > span.cell:hover {
+    border: 1px solid #00000090;
   }
 }
 
