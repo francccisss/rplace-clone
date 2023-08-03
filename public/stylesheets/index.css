@@ -247,6 +247,7 @@ section#pixel-board-container {
 }
 
 #modal-container {
+  min-width: 250px;
   appearance: none;
   border: none;
   border-radius: 10px;
@@ -254,9 +255,28 @@ section#pixel-board-container {
   box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, 0.2);
   & > #inner-modal-container {
     margin-bottom: 0.6em;
-    & > label {
+    :first-child {
+      font-weight: 600;
+      margin-bottom: 2em;
       text-align: center;
     }
+    :not(:first-child) {
+      text-align: center;
+      border: none;
+      border-bottom: #00000020 2px solid;
+      appearance: none;
+      outline: none;
+      font-size: 1.2rem;
+      transition: border 150ms ease-in;
+    }
+    :not(:first-child):hover {
+      border-bottom: #8ab4f8 2px solid;
+    }
+    :not(:first-child):focus,
+    :not(:first-child):focus-within {
+      border-bottom: #8ab4f8 2px solid;
+    }
+
     display: flex;
     flex-direction: column;
   }
@@ -266,7 +286,17 @@ section#pixel-board-container {
   display: flex;
   & > #confirm-btn {
     font-family: inter;
-    font-weight: 400;
+    font-weight: 500;
     margin-left: auto;
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 150ms ease-in;
+    background: #8ab4f8;
+  }
+  & > #confirm-btn:hover {
+    background: #8ab4f899;
   }
 }
