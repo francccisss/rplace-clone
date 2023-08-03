@@ -2,6 +2,7 @@ import { User } from "./Users.js";
 import "./container.js";
 import { PixelBoard } from "./PixelBoard.js";
 const socket = io();
+const contentBg = document.getElementById("content-bg");
 const pixelBoardContainer = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
 const colorInput = document.getElementById("color-input");
@@ -11,6 +12,7 @@ const pickedColorDiv = document.getElementById("current-color");
 const modal = document.getElementById("modal-container");
 const nameInput = document.getElementById("name-input");
 const confirmBtn = document.getElementById("confirm-btn");
+let guestId;
 
 async function applyColorPicker() {
   const defaultColors = [
@@ -41,6 +43,17 @@ async function applyColorPicker() {
   });
 }
 
+function setNewUser() {
+  pixelBoardContainer.style.filter = "blur(0px)";
+  colorPicker.style.filter = "blur(0px)";
+  user.setName(nameInput.value);
+  if (user.getName() === null || user.getName() === "") {
+    user.setName(guestId);
+    modal.close();
+    return;
+  }
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
   modal.showModal();
   await applyColorPicker();
@@ -49,10 +62,12 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 confirmBtn.addEventListener("click", () => {
-  pixelBoardContainer.style.filter = "blur(0px)";
-  colorPicker.style.filter = "blur(0px)";
-  user.setName(nameInput.value);
+  setNewUser();
   modal.close();
+});
+
+modal.addEventListener("cancel", () => {
+  setNewUser();
 });
 
 colorPicker.addEventListener("click", (e) => {
@@ -73,3 +88,7 @@ colorInput.addEventListener(
 );
 pixelBoardContainer.addEventListener("click", (e) => user.place(e));
 socket.on("place", (data) => pixelBoard.updateBoard(data));
+socket.on("connect", () => {
+  console.log(socket.id);
+  guestId = socket.id;
+});
