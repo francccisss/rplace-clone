@@ -44,9 +44,13 @@ async function applyColorPicker() {
 window.addEventListener("DOMContentLoaded", async () => {
   modal.showModal();
   await applyColorPicker();
+  pixelBoardContainer.style.filter = "blur(10px)";
+  colorPicker.style.filter = "blur(10px)";
 });
 
 confirmBtn.addEventListener("click", () => {
+  pixelBoardContainer.style.filter = "blur(0px)";
+  colorPicker.style.filter = "blur(0px)";
   user.setName(nameInput.value);
   modal.close();
 });

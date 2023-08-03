@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -129,6 +130,7 @@ table {
 }
 
 body {
+  font-family: inter;
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -179,11 +181,7 @@ section#pixel-board-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 0.1px solid #00000020; */
   }
-  /* & > span.cell:hover { */
-  /*   border: 1px solid #00000090; */
-  /* } */
 }
 
 #color-picker {
@@ -249,12 +247,26 @@ section#pixel-board-container {
 }
 
 #modal-container {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
   display: absolute;
+  box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, 0.2);
   & > #inner-modal-container {
+    margin-bottom: 0.6em;
     & > label {
       text-align: center;
     }
     display: flex;
     flex-direction: column;
+  }
+}
+
+#modal-btn {
+  display: flex;
+  & > #confirm-btn {
+    font-family: inter;
+    font-weight: 400;
+    margin-left: auto;
   }
 }
