@@ -2,6 +2,16 @@ const socket = io();
 export class User {
   constructor() {
     this.color = null;
+    this.name;
+  }
+
+  setName(input) {
+    this.name = input;
+    return this.name;
+  }
+
+  getName() {
+    return this.name;
   }
 
   setColor(e) {

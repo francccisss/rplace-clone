@@ -8,7 +8,11 @@ const colorInput = document.getElementById("color-input");
 const user = new User();
 const pixelBoard = new PixelBoard(pixelBoardContainer);
 const pickedColorDiv = document.getElementById("current-color");
-(function () {
+const modal = document.getElementById("modal-container");
+const nameInput = document.getElementById("name-input");
+const confirmBtn = document.getElementById("confirm-btn");
+
+async function applyColorPicker() {
   const defaultColors = [
     "#FFFFFF",
     "#000000",
@@ -35,7 +39,17 @@ const pickedColorDiv = document.getElementById("current-color");
   cells.forEach((cell) => {
     cell.style.backgroundColor = cell.dataset.color;
   });
-})();
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
+  modal.showModal();
+  await applyColorPicker();
+});
+
+confirmBtn.addEventListener("click", () => {
+  user.setName(nameInput.value);
+  modal.close();
+});
 
 colorPicker.addEventListener("click", (e) => {
   const color = user.setColor(e);

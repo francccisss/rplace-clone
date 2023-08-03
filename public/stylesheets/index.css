@@ -187,7 +187,7 @@ section#pixel-board-container {
 }
 
 #color-picker {
-  z-index: 999;
+  z-index: 100;
   padding: 0px 10px;
   min-height: 50px;
   max-width: 500px;
@@ -244,6 +244,17 @@ section#pixel-board-container {
   transform: translate(-50%, -50%);
   width: 25px;
   height: 25px;
-  z-index: 9999;
+  z-index: 99;
   position: absolute;
+}
+
+#modal-container {
+  display: absolute;
+  & > #inner-modal-container {
+    & > label {
+      text-align: center;
+    }
+    display: flex;
+    flex-direction: column;
+  }
 }

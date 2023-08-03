@@ -1,6 +1,12 @@
 extends layout
 block content
   main#content-bg
+    dialog#modal-container
+      span#inner-modal-container
+        label(id="name" for="name-input") Name:
+        input(type="text" id="name-input" name="name-input")
+      div#modal-btn
+        button(type="button" id="confirm-btn") Confirm
     span#current-color
     section(id="pixel-board-container" 
       style={'grid-template-rows':`repeat(${rowAndCols.rows} ,minmax(20px,auto))`,
