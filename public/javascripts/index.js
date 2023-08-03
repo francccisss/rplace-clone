@@ -2,7 +2,6 @@ import { User } from "./Users.js";
 import "./container.js";
 import { PixelBoard } from "./PixelBoard.js";
 const socket = io();
-const contentBg = document.getElementById("content-bg");
 const pixelBoardContainer = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
 const colorInput = document.getElementById("color-input");
@@ -72,7 +71,8 @@ modal.addEventListener("cancel", () => {
 
 colorPicker.addEventListener("click", (e) => {
   const color = user.setColor(e);
-  if (e.target.id !== "color-swatch") {
+  let hex = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);
+  if (e.target.id !== "color-swatch" && hex.test(e.target.id)) {
     pickedColorDiv.style.backgroundColor = color;
     pickedColorDiv.style.border = "1px solid #00000080";
   }

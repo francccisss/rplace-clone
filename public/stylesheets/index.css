@@ -242,7 +242,7 @@ section#pixel-board-container {
   transform: translate(-50%, -50%);
   width: 25px;
   height: 25px;
-  z-index: 99;
+  z-index: 999;
   position: absolute;
 }
 

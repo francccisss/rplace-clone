@@ -17,14 +17,16 @@ export class User {
   setColor(e) {
     const target = e.target;
     let hex = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);
-    if (!hex.test(target.id)) {
-      console.log("value from color input");
+    if (hex.test(target.id)) {
+      console.log(target);
+      this.color = target.id;
+      return this.color;
+    }
+    if (target.id === "color-input") {
+      console.log(target);
       this.color = target.value;
       return target.value;
     }
-    console.log("value from color picker");
-    this.color = target.id;
-    return this.color;
   }
   place(e) {
     e.stopPropagation();
