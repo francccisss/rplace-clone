@@ -14,7 +14,6 @@ block content
               })
       each cell,index in gridData.grid
         span(class=cell.className id=cell.id, data-color=cell.color)
-
     div#color-picker
       ul#color-list
         li#color-swatch.item
@@ -29,3 +28,28 @@ block content
         li.item
         li.item
         li.item
+    div#chat-box
+      div#user-messages
+        p.message 
+          span.user-name John
+          | hello
+        p.message 
+          span.user-name jenny 
+          | hi
+        p.message 
+          span.user-name alfred 
+          | lol
+        p.message 
+          span.user-name jonathan
+          | How did we ever do this programming thing before the InterTubes??? I know we did it, but honestly it seems like a distant, muddy memory.
+        p.message 
+          span.user-name ronald
+          | Fifth get involved. Go to User Groups, Nerd Dinners, meet with others who feel the same way you do about technology. Stretch.
+        p.message 
+          span.user-name sigfried
+          | This hits close to home. I have wondered the same thing. Thanks for the tips on staying sharp.
+        p.message 
+          span.user-name me
+          | What do you think?
+      div#chat-input-container
+        input(type="text" id="user-chat-input")

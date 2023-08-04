@@ -58,10 +58,10 @@ function setNewUser() {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  modal.showModal();
+  // modal.showModal();
   await applyColorPicker();
-  pixelBoardContainer.style.filter = "blur(10px)";
-  colorPicker.style.filter = "blur(10px)";
+  // pixelBoardContainer.style.filter = "blur(10px)";
+  // colorPicker.style.filter = "blur(10px)";
 });
 
 confirmBtn.addEventListener("click", () => {
@@ -79,6 +79,7 @@ colorPicker.addEventListener("click", (e) => {
   if (e.target.id !== "color-swatch" && hex.test(e.target.id)) {
     pickedColorDiv.style.backgroundColor = color;
     pickedColorDiv.style.border = "1px solid #00000080";
+    pickedColorDiv.style.display = "inline-block";
   }
 });
 colorInput.addEventListener(
@@ -87,6 +88,7 @@ colorInput.addEventListener(
     const color = user.setColor(e);
     pickedColorDiv.style.backgroundColor = color;
     pickedColorDiv.style.border = "1px solid #00000080";
+    pickedColorDiv.style.display = "inline-block";
   },
   false
 );

@@ -239,6 +239,7 @@ section#pixel-board-container {
 }
 
 #current-color {
+  display: none;
   transform: translate(-50%, -50%);
   width: 25px;
   height: 25px;
@@ -299,4 +300,29 @@ section#pixel-board-container {
   & > #confirm-btn:hover {
     background: #8ab4f899;
   }
+}
+
+#chat-box {
+  display: flex;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  bottom: 0;
+  height: 30%;
+  width: 500px;
+  flex-direction: column;
+}
+#user-messages {
+  height: 100%;
+  width: auto;
+  & > .message {
+    font-family: inter;
+    font-size: 1rem;
+    color: white;
+    display: flex;
+  }
+}
+#user-chat-input {
+  height: auto;
+  min-width: 300px;
 }
