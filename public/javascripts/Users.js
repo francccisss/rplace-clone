@@ -14,6 +14,15 @@ export class User {
     return this.name;
   }
 
+  sendMessage(input) {
+    const sender = {
+      name: this.name,
+      time: Date.now(),
+      message: input,
+    };
+    socket.emit("message", sender);
+  }
+
   setColor(e) {
     const target = e.target;
     let hex = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);

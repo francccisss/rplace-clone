@@ -22,8 +22,11 @@ io.on("connection", (socket) => {
     const toJsonMsg = JSON.stringify(msg);
     console.log(`user ${socket.id} sent: ${toJsonMsg}`);
     io.emit("place", msg);
-    // handle updating grids.json error
     updateGrids("grids.json", msg);
+  });
+
+  socket.on("user", async (user) => {
+    io.emit("user", user);
   });
 
   socket.on("disconnect", (reason) => {

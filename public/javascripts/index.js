@@ -1,11 +1,13 @@
 import { User } from "./Users.js";
 import "./container.js";
 import { PixelBoard } from "./PixelBoard.js";
+import { Chat } from "./Chat.js";
 const socket = io();
 const pixelBoardContainer = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
 const colorInput = document.getElementById("color-input");
 const user = new User();
+const chat = new Chat();
 const pixelBoard = new PixelBoard(pixelBoardContainer);
 const pickedColorDiv = document.getElementById("current-color");
 const modal = document.getElementById("modal-container");
@@ -49,8 +51,10 @@ function setNewUser() {
   if (user.getName() === null || user.getName() === "") {
     user.setName(guestId);
     modal.close();
+    socket.emit("user", { name: user.getName() });
     return;
   }
+  socket.emit("user", { name: user.getName() });
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -92,3 +96,6 @@ socket.on("connect", () => {
   console.log(socket.id);
   guestId = socket.id;
 });
+
+socket.on("user", (newUser) => chat.addNewUser(newUser));
+socket.on("message", (newMessage) => chat.addMessage(newMessage));
