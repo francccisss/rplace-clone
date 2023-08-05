@@ -189,7 +189,7 @@ section#pixel-board-container {
   padding: 0px 10px;
   min-height: 50px;
   max-width: 500px;
-  position: absolute;
+  position: fixed;
   background: white;
   border-radius: 10px;
   top: calc(100% - 100px);
@@ -304,7 +304,7 @@ section#pixel-board-container {
 
 #chat-box {
   display: flex;
-  position: absolute;
+  position: fixed;
   z-index: 999;
   left: 0;
   bottom: 0;
