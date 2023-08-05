@@ -22,12 +22,17 @@ function translatePixelContainer(e) {
 }
 
 function scalePixelContainer(e) {
-  e.preventDefault();
+  const target = e.target;
   console.log(e.deltaY);
+  if (!target.id === "chat-box") {
+    return;
+  }
   if (e.ctrlKey) {
+    e.preventDefault();
     scale += e.deltaY * -0.005;
     scale = Math.min(Math.max(0.5, scale), 5);
     pixelBoard.style.transform = `scale(${scale})`;
+    return;
   }
 }
 
