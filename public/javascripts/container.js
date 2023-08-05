@@ -24,9 +24,11 @@ function translatePixelContainer(e) {
 function scalePixelContainer(e) {
   e.preventDefault();
   console.log(e.deltaY);
-  scale += e.deltaY * -0.005;
-  scale = Math.min(Math.max(0.5, scale), 5);
-  pixelBoard.style.transform = `scale(${scale})`;
+  if (e.ctrlKey) {
+    scale += e.deltaY * -0.005;
+    scale = Math.min(Math.max(0.5, scale), 5);
+    pixelBoard.style.transform = `scale(${scale})`;
+  }
 }
 
 function currentColorFollowMousePos(e) {
