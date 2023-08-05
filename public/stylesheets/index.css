@@ -336,9 +336,25 @@ section#pixel-board-container {
 .user-name {
   margin-right: 0.6em;
   font-weight: 600;
+
+  color: #8ab4f8;
 }
 
+#chat-input-container {
+  width: 100%;
+  border-top: #ffffff40 1px solid;
+}
 #user-chat-input {
   height: auto;
-  min-width: 300px;
+  width: 100%;
+  appearance: none;
+  margin: 0;
+  border: none;
+
+  font-size: 1.2rem;
+  outline: none;
+  background: transparent;
+  color: white;
+  padding: 5px 10px;
+  box-sizing: border-box;
 }
