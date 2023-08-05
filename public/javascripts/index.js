@@ -7,12 +7,13 @@ const pixelBoardContainer = document.getElementById("pixel-board-container");
 const colorPicker = document.getElementById("color-picker");
 const colorInput = document.getElementById("color-input");
 const user = new User();
-const chat = new Chat();
 const pixelBoard = new PixelBoard(pixelBoardContainer);
 const pickedColorDiv = document.getElementById("current-color");
 const modal = document.getElementById("modal-container");
 const nameInput = document.getElementById("name-input");
 const confirmBtn = document.getElementById("confirm-btn");
+const chatBox = document.getElementById("chat-box");
+const chat = new Chat(chatBox);
 let guestId;
 
 async function applyColorPicker() {
@@ -58,7 +59,7 @@ function setNewUser() {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  // modal.showModal();
+  modal.showModal();
   await applyColorPicker();
   // pixelBoardContainer.style.filter = "blur(10px)";
   // colorPicker.style.filter = "blur(10px)";
@@ -99,5 +100,10 @@ socket.on("connect", () => {
   guestId = socket.id;
 });
 
-socket.on("user", (newUser) => chat.addNewUser(newUser));
-socket.on("message", (newMessage) => chat.addMessage(newMessage));
+socket.on("user", (newUser) => {
+  chat.addNewUser(newUser);
+  chat.notifyUsers(`${newUser.name} has joined!`);
+});
+socket.on("message", (newMessage) => {
+  chat.addMessage(newMessage);
+});
