@@ -313,6 +313,30 @@ section#pixel-board-container {
   background: #00000080;
 }
 #user-messages {
+  /* width */
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+  /* Track */
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #8ab4f880;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #8ab4f890;
+    border-radius: 10px;
+  }
   max-height: 300px;
   overflow: auto;
   width: auto;
@@ -336,7 +360,6 @@ section#pixel-board-container {
 .user-name {
   margin-right: 0.6em;
   font-weight: 600;
-
   color: #8ab4f8;
 }
 
@@ -350,8 +373,8 @@ section#pixel-board-container {
   appearance: none;
   margin: 0;
   border: none;
-
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
   outline: none;
   background: transparent;
   color: white;
