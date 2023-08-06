@@ -102,8 +102,8 @@ socket.on("connect", () => {
 
 socket.on("user", (newUser) => {
   chat.addNewUser(newUser);
-  chat.notifyUsers(`${newUser.name} has joined!`);
+  chat.emitMessage(`${newUser.name} has joined!`, true);
 });
 socket.on("message", (newMessage) => {
-  chat.addMessage(newMessage);
+  chat.emitMessage(newMessage);
 });
