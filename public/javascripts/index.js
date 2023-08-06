@@ -59,7 +59,7 @@ function setNewUser() {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  modal.showModal();
+  // modal.showModal();
   await applyColorPicker();
   // pixelBoardContainer.style.filter = "blur(10px)";
   // colorPicker.style.filter = "blur(10px)";
@@ -93,6 +93,7 @@ colorInput.addEventListener(
   },
   false
 );
+
 pixelBoardContainer.addEventListener("click", (e) => user.place(e));
 socket.on("place", (data) => pixelBoard.updateBoard(data));
 socket.on("connect", () => {

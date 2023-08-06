@@ -366,6 +366,14 @@ section#pixel-board-container {
 #chat-input-container {
   width: 100%;
   border-top: #ffffff40 1px solid;
+  display: flex;
+  & > #user-chat-btn {
+    width: 2em;
+    border: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
 }
 #user-chat-input {
   height: auto;
