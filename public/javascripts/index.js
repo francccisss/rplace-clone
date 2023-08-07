@@ -61,6 +61,29 @@ function setNewUser() {
   socket.emit("user", { name: user.getName() });
 }
 
+function sendUserMessage(e) {
+  e.preventDefault();
+  console.log("submitted");
+  user.sendMessage(chatInput.value);
+  chatInput.value = "";
+}
+
+function setCurrentPickedColor(e) {
+  const color = user.setColor(e);
+  let hex = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);
+  if (e.target.id !== "color-swatch" && hex.test(e.target.id)) {
+    pickedColorDiv.style.backgroundColor = color;
+    pickedColorDiv.style.border = "1px solid #00000080";
+    pickedColorDiv.style.display = "inline-block";
+    return;
+  }
+  if (e.target.id === "color-input") {
+    pickedColorDiv.style.backgroundColor = color;
+    pickedColorDiv.style.border = "1px solid #00000080";
+    pickedColorDiv.style.display = "inline-block";
+  }
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
   // modal.showModal();
   await applyColorPicker();
@@ -77,25 +100,8 @@ modal.addEventListener("cancel", () => {
   setNewUser();
 });
 
-colorPicker.addEventListener("click", (e) => {
-  const color = user.setColor(e);
-  let hex = new RegExp(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/);
-  if (e.target.id !== "color-swatch" && hex.test(e.target.id)) {
-    pickedColorDiv.style.backgroundColor = color;
-    pickedColorDiv.style.border = "1px solid #00000080";
-    pickedColorDiv.style.display = "inline-block";
-  }
-});
-colorInput.addEventListener(
-  "input",
-  (e) => {
-    const color = user.setColor(e);
-    pickedColorDiv.style.backgroundColor = color;
-    pickedColorDiv.style.border = "1px solid #00000080";
-    pickedColorDiv.style.display = "inline-block";
-  },
-  false
-);
+colorPicker.addEventListener("click", (e) => setCurrentPickedColor(e));
+colorInput.addEventListener("input", (e) => setCurrentPickedColor(e), false);
 
 pixelBoardContainer.addEventListener("click", (e) => user.place(e));
 socket.on("place", (data) => pixelBoard.updateBoard(data));
@@ -108,17 +114,8 @@ chatBox.addEventListener("click", () => {
   chatInput.focus();
 });
 
-chatInputContainer.addEventListener("submit", (e) => {
-  e.preventDefault();
-  console.log("submitted");
-  user.sendMessage(chatInput.value);
-});
-
-chatBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  console.log("submitted");
-  user.sendMessage(chatInput.value);
-});
+chatInputContainer.addEventListener("submit", (e) => sendUserMessage(e));
+chatBtn.addEventListener("click", (e) => sendUserMessage(e));
 
 socket.on("user", (newUser) => {
   chat.addNewUser(newUser);
