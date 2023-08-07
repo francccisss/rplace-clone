@@ -29,6 +29,14 @@ io.on("connection", (socket) => {
     io.emit("user", user);
   });
 
+  socket.on("message", async (newMessage) => {
+    if (newMessage.message === "") {
+      console.log("Dont update messages");
+      return;
+    }
+    io.emit("message", newMessage);
+  });
+
   socket.on("disconnect", (reason) => {
     console.log(reason);
   });

@@ -12,6 +12,7 @@ const pickedColorDiv = document.getElementById("current-color");
 const modal = document.getElementById("modal-container");
 const nameInput = document.getElementById("name-input");
 const chatInput = document.getElementById("user-chat-input");
+const chatBtn = document.getElementById("user-chat-btn");
 const chatInputContainer = document.getElementById("chat-input-container");
 const confirmBtn = document.getElementById("confirm-btn");
 const chatBox = document.getElementById("chat-box");
@@ -110,6 +111,13 @@ chatBox.addEventListener("click", () => {
 chatInputContainer.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("submitted");
+  user.sendMessage(chatInput.value);
+});
+
+chatBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("submitted");
+  user.sendMessage(chatInput.value);
 });
 
 socket.on("user", (newUser) => {
@@ -117,5 +125,7 @@ socket.on("user", (newUser) => {
   chat.emitMessage(`${newUser.name} has joined!`, true);
 });
 socket.on("message", (newMessage) => {
+  console.log(newMessage);
+  console.log("new message");
   chat.emitMessage(newMessage);
 });
