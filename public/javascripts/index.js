@@ -16,7 +16,9 @@ const chatBtn = document.getElementById("user-chat-btn");
 const chatInputContainer = document.getElementById("chat-input-container");
 const confirmBtn = document.getElementById("confirm-btn");
 const chatBox = document.getElementById("chat-box");
+const userMessages = document.getElementById("user-messages");
 const chat = new Chat(chatBox);
+let isScrolledToBottom = true;
 let guestId;
 
 async function applyColorPicker() {
@@ -85,10 +87,14 @@ function setCurrentPickedColor(e) {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  modal.showModal();
+  // modal.showModal();
   await applyColorPicker();
-  pixelBoardContainer.style.filter = "blur(10px)";
-  colorPicker.style.filter = "blur(10px)";
+  // pixelBoardContainer.style.filter = "blur(10px)";
+  // colorPicker.style.filter = "blur(10px)";
+  chatBox.children[0].scrollTo({
+    top: chatBox.children[0].scrollHeight,
+    behavior: "smooth",
+  });
 });
 
 confirmBtn.addEventListener("click", () => {
@@ -115,12 +121,27 @@ chatBox.addEventListener("click", () => {
 chatInputContainer.addEventListener("submit", (e) => sendUserMessage(e));
 chatBtn.addEventListener("click", (e) => sendUserMessage(e));
 
+userMessages.addEventListener("scrollend", (e) => {
+  if (userMessages.scrollTop === userMessages.scrollHeight - 300) {
+    return (isScrolledToBottom = true);
+  }
+
+  return (isScrolledToBottom = false);
+});
+
 socket.on("user", (newUser) => {
   chat.addNewUser(newUser);
   chat.emitMessage(`${newUser.name} has joined!`, true);
 });
+
 socket.on("message", (newMessage) => {
-  console.log(newMessage);
   console.log("new message");
   chat.emitMessage(newMessage);
+
+  if (isScrolledToBottom) {
+    chatBox.children[0].scrollTo({
+      top: chatBox.children[0].scrollHeight,
+      behavior: "smooth",
+    });
+  }
 });
