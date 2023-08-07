@@ -116,20 +116,17 @@ socket.on("connect", () => {
 });
 
 chatInputContainer.addEventListener("submit", (e) => sendUserMessage(e));
-chatBox.addEventListener("click", (e) => {
-  e.stopPropagation();
-  if (e.target.id === "minimize-chat-btn") {
-    userMessages.classList.replace(
-      "user-messages-active",
-      "user-messages-inactive"
-    );
-    return;
-  }
-  userMessages.classList.replace(
-    "user-messages-inactive",
-    "user-messages-active"
-  );
-});
+chatBox.addEventListener("click", (e) =>
+  e.target.id === "minimize-chat-btn"
+    ? userMessages.classList.replace(
+        "user-messages-active",
+        "user-messages-inactive"
+      )
+    : userMessages.classList.replace(
+        "user-messages-inactive",
+        "user-messages-active"
+      )
+);
 
 chatBox.addEventListener("keyup", (e) => {
   console.log(e.code);
