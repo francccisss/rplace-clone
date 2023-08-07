@@ -87,10 +87,10 @@ function setCurrentPickedColor(e) {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  // modal.showModal();
+  modal.showModal();
   await applyColorPicker();
-  // pixelBoardContainer.style.filter = "blur(10px)";
-  // colorPicker.style.filter = "blur(10px)";
+  pixelBoardContainer.style.filter = "blur(10px)";
+  colorPicker.style.filter = "blur(10px)";
   chatBox.children[0].scrollTo({
     top: chatBox.children[0].scrollHeight,
     behavior: "smooth",
