@@ -85,10 +85,10 @@ function setCurrentPickedColor(e) {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  // modal.showModal();
+  modal.showModal();
   await applyColorPicker();
-  // pixelBoardContainer.style.filter = "blur(10px)";
-  // colorPicker.style.filter = "blur(10px)";
+  pixelBoardContainer.style.filter = "blur(10px)";
+  colorPicker.style.filter = "blur(10px)";
 });
 
 confirmBtn.addEventListener("click", () => {
@@ -96,9 +96,7 @@ confirmBtn.addEventListener("click", () => {
   modal.close();
 });
 
-modal.addEventListener("cancel", () => {
-  setNewUser();
-});
+modal.addEventListener("cancel", setNewUser);
 
 colorPicker.addEventListener("click", (e) => setCurrentPickedColor(e));
 colorInput.addEventListener("input", (e) => setCurrentPickedColor(e), false);

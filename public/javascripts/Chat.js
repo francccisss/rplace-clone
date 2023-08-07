@@ -29,7 +29,7 @@ export class Chat {
       const newSpan = document.createElement("span");
       newSpan.setAttribute("class", "user-name");
       newP.setAttribute("class", "message");
-      newSpan.textContent = data.name;
+      newSpan.textContent = `${data.name}:`;
       newP.textContent = data.message;
       newP.prepend(newSpan);
       userMessages.appendChild(newP);
