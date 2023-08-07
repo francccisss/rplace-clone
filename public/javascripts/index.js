@@ -87,12 +87,12 @@ function setCurrentPickedColor(e) {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  modal.showModal();
+  // modal.showModal();
   await applyColorPicker();
   pixelBoardContainer.style.filter = "blur(10px)";
   colorPicker.style.filter = "blur(10px)";
-  chatBox.children[0].scrollTo({
-    top: chatBox.children[0].scrollHeight,
+  chatBox.children[1].scrollTo({
+    top: chatBox.children[1].scrollHeight,
     behavior: "smooth",
   });
 });
@@ -114,8 +114,10 @@ socket.on("connect", () => {
   guestId = socket.id;
 });
 
-chatBox.addEventListener("click", () => {
+chatBox.addEventListener("click", (e) => {
   chatInput.focus();
+  if (e) {
+  }
 });
 
 chatInputContainer.addEventListener("submit", (e) => sendUserMessage(e));
@@ -125,7 +127,6 @@ userMessages.addEventListener("scrollend", (e) => {
   if (userMessages.scrollTop === userMessages.scrollHeight - 300) {
     return (isScrolledToBottom = true);
   }
-
   return (isScrolledToBottom = false);
 });
 
@@ -139,8 +140,8 @@ socket.on("message", (newMessage) => {
   chat.emitMessage(newMessage);
 
   if (isScrolledToBottom) {
-    chatBox.children[0].scrollTo({
-      top: chatBox.children[0].scrollHeight,
+    chatBox.children[1].scrollTo({
+      top: chatBox.children[1].scrollHeight,
       behavior: "smooth",
     });
   }

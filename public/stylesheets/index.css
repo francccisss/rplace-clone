@@ -303,6 +303,7 @@ section#pixel-board-container {
 }
 
 #chat-box {
+  border-top-right-radius: 5px;
   display: flex;
   position: fixed;
   z-index: 999;
@@ -337,7 +338,7 @@ section#pixel-board-container {
     background: #8ab4f890;
     border-radius: 10px;
   }
-  max-height: 300px;
+  height: 300px;
   overflow-y: auto;
   display: flex;
   width: 500px;
@@ -409,4 +410,21 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #ffffff;
   transition: background-color 100000s ease-in-out 0s;
   box-shadow: inset 0 0 20px 20px #23232329;
+}
+
+#chat-box-actions {
+  padding: 0px 10px;
+  height: 30px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border-bottom: 1px solid #ffffff40;
+  & > button {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 20px;
+    height: 3px;
+  }
 }

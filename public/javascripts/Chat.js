@@ -28,7 +28,7 @@ export class Chat {
         ? "0" + timeMinutes.toString()
         : timeMinutes
     }]`;
-    const userMessages = this.chatBox.children[0];
+    const userMessages = this.chatBox.children[1];
     if (isSystem) {
       newP.prepend(timeDisplay);
       console.log("called");
