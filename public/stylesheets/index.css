@@ -338,7 +338,6 @@ section#pixel-board-container {
     background: #8ab4f890;
     border-radius: 10px;
   }
-  height: 300px;
   overflow-y: auto;
   display: flex;
   width: 500px;
@@ -360,6 +359,15 @@ section#pixel-board-container {
   }
 }
 
+.user-messages-active {
+  height: 300px;
+  transition: height 100ms ease-in-out;
+}
+
+.user-messages-inactive {
+  transition: height 100ms ease-in-out;
+  height: 0px;
+}
 .user-name {
   margin-right: 0.6em;
   font-weight: 600;

@@ -18,6 +18,7 @@ const confirmBtn = document.getElementById("confirm-btn");
 const chatBox = document.getElementById("chat-box");
 const userMessages = document.getElementById("user-messages");
 const chat = new Chat(chatBox);
+const chatMinimizeBtn = document.getElementById("minimize-chat-btn");
 let isScrolledToBottom = true;
 let guestId;
 
@@ -87,12 +88,12 @@ function setCurrentPickedColor(e) {
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
-  // modal.showModal();
+  modal.showModal();
   await applyColorPicker();
   pixelBoardContainer.style.filter = "blur(10px)";
   colorPicker.style.filter = "blur(10px)";
-  chatBox.children[1].scrollTo({
-    top: chatBox.children[1].scrollHeight,
+  userMessages.scrollTo({
+    top: userMessages.scrollHeight,
     behavior: "smooth",
   });
 });
@@ -114,21 +115,33 @@ socket.on("connect", () => {
   guestId = socket.id;
 });
 
+chatInputContainer.addEventListener("submit", (e) => sendUserMessage(e));
 chatBox.addEventListener("click", (e) => {
-  chatInput.focus();
-  if (e) {
+  e.stopPropagation();
+  if (e.target.id === "minimize-chat-btn") {
+    userMessages.classList.replace(
+      "user-messages-active",
+      "user-messages-inactive"
+    );
+    return;
   }
+  userMessages.classList.replace(
+    "user-messages-inactive",
+    "user-messages-active"
+  );
 });
 
-chatInputContainer.addEventListener("submit", (e) => sendUserMessage(e));
+chatBox.addEventListener("keyup", (e) => {
+  console.log(e.code);
+});
+
 chatBtn.addEventListener("click", (e) => sendUserMessage(e));
 
-userMessages.addEventListener("scrollend", (e) => {
-  if (userMessages.scrollTop === userMessages.scrollHeight - 300) {
-    return (isScrolledToBottom = true);
-  }
-  return (isScrolledToBottom = false);
-});
+userMessages.addEventListener("scrollend", () =>
+  userMessages.scrollTop === userMessages.scrollHeight - 300
+    ? (isScrolledToBottom = true)
+    : (isScrolledToBottom = false)
+);
 
 socket.on("user", (newUser) => {
   chat.addNewUser(newUser);
@@ -140,8 +153,8 @@ socket.on("message", (newMessage) => {
   chat.emitMessage(newMessage);
 
   if (isScrolledToBottom) {
-    chatBox.children[1].scrollTo({
-      top: chatBox.children[1].scrollHeight,
+    userMessages.scrollTo({
+      top: userMessages.scrollHeight,
       behavior: "smooth",
     });
   }
