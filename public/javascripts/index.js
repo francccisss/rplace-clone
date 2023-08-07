@@ -11,6 +11,8 @@ const pixelBoard = new PixelBoard(pixelBoardContainer);
 const pickedColorDiv = document.getElementById("current-color");
 const modal = document.getElementById("modal-container");
 const nameInput = document.getElementById("name-input");
+const chatInput = document.getElementById("user-chat-input");
+const chatInputContainer = document.getElementById("chat-input-container");
 const confirmBtn = document.getElementById("confirm-btn");
 const chatBox = document.getElementById("chat-box");
 const chat = new Chat(chatBox);
@@ -99,6 +101,15 @@ socket.on("place", (data) => pixelBoard.updateBoard(data));
 socket.on("connect", () => {
   console.log(socket.id);
   guestId = socket.id;
+});
+
+chatBox.addEventListener("click", () => {
+  chatInput.focus();
+});
+
+chatInputContainer.addEventListener("submit", (e) => {
+  e.preventDefault();
+  console.log("submitted");
 });
 
 socket.on("user", (newUser) => {
