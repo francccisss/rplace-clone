@@ -128,10 +128,6 @@ chatBox.addEventListener("click", (e) =>
       )
 );
 
-chatBox.addEventListener("keyup", (e) => {
-  console.log(e.code);
-});
-
 chatBtn.addEventListener("click", (e) => sendUserMessage(e));
 
 userMessages.addEventListener("scrollend", () =>
